@@ -13,6 +13,20 @@ flutter run --dart-define=API_BASE_URL=http://10.0.2.2:8000/api
 
 URL `10.0.2.2` hanya untuk Android Emulator yang mengakses server API di komputer host. Ganti dengan URL server yang dapat diakses perangkat fisik bila diperlukan.
 
+## Demo di HP fisik tanpa kabel USB
+
+HP dan komputer server harus terhubung ke Wi-Fi/LAN yang sama. Jalankan backend agar menerima koneksi dari jaringan lokal (bukan hanya `localhost`), izinkan port API di firewall komputer, lalu gunakan alamat IP lokal komputer, misalnya:
+
+```powershell
+flutter build apk --debug --dart-define=API_BASE_URL=http://192.168.1.10:8000/api
+```
+
+Ganti `192.168.1.10` dengan alamat IPv4 komputer server. APK debug mengizinkan HTTP untuk demo lokal; pengaturan ini hanya ada pada manifest debug dan tidak berlaku untuk build release. Pastikan backend menerima alamat tersebut dan menyediakan endpoint API yang didokumentasikan di bawah.
+
+APK berada di `build/app/outputs/flutter-apk/app-debug.apk`. Kirim file APK ke HP melalui Drive, email, atau cara berbagi file lain, lalu buka file di HP dan izinkan instalasi dari sumber tersebut jika Android memintanya. Setelah terpasang, demo dapat berjalan tanpa kabel USB selama HP bisa menjangkau server API. Alamat `10.0.2.2` tidak berlaku untuk HP fisik.
+
+Jika HP dan server tidak berada di jaringan yang sama, gunakan server API publik melalui HTTPS. Jangan membuka port backend ke internet hanya untuk demo lokal.
+
 ## Kontrak backend
 
 Semua endpoint selain autentikasi menggunakan token `Authorization: Bearer <token>`.

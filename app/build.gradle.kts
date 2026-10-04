@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.bengkelapp"
+    namespace = "com.bengkel.app"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.bengkelapp"
+        applicationId = "com.bengkel.app"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

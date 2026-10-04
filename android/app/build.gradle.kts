@@ -39,7 +39,7 @@ if (isReleaseBuildRequested) {
 }
 
 android {
-    namespace = "com.example.bengkel_app"
+    namespace = "com.bengkel.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -53,10 +53,7 @@ android {
     }
 
     defaultConfig {
-        // Replace this example application ID before publishing to an app store.
-        applicationId = "com.example.bengkel_app"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        applicationId = "com.bengkel.app"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -65,7 +62,7 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = releaseStoreFile?.let { file(it) }
+            storeFile = releaseStoreFile?.let { rootProject.file(it) }
             storePassword = releaseStorePassword
             keyAlias = releaseKeyAlias
             keyPassword = releaseKeyPassword
@@ -75,6 +72,8 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }
